@@ -259,6 +259,13 @@ export default class SlCarousel extends ShoelaceElement {
     });
   };
 
+  @eventOptions({ capture: true })
+  private handleClick(e: MouseEvent) {
+    if (this.dragging) {
+      e.stopPropagation();
+    }
+  }
+
   @eventOptions({ passive: true })
   private handleScroll() {
     this.scrolling = true;
@@ -533,6 +540,7 @@ export default class SlCarousel extends ShoelaceElement {
           @mousedown="${this.handleMouseDragStart}"
           @scroll="${this.handleScroll}"
           @scrollend=${this.handleScrollEnd}
+          @click=${this.handleClick}
         >
           <slot></slot>
         </div>
