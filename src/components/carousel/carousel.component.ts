@@ -262,6 +262,9 @@ export default class SlCarousel extends ShoelaceElement {
   @eventOptions({ capture: true })
   private handleClick(e: MouseEvent) {
     if (this.dragging) {
+      // prevents anchor tags within carousel items from triggering while dragging
+      e.preventDefault();
+      // prevents click events within carousel items from triggerin while dragging
       e.stopPropagation();
     }
   }
